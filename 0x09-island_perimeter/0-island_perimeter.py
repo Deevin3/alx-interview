@@ -1,29 +1,27 @@
 #!/usr/bin/python3
-"""
-Return the Perimeter of
-the given Grid.
+""" Island Perimeter Module Coding
 """
 
 
 def island_perimeter(grid):
-    if not grid:
-        return 0
+    """island_perimeter function that returns the perimeter of the island
 
-    rows = len(grid)
-    cols = len(grid[0])
+    Args:
+        grid (list[int]): grid representation of the island
 
+    Returns:
+        int: perimeter of the island
+    """
     perimeter = 0
-
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
-                if i == 0 or grid[i - 1][j] == 0:
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j]:
+                if i == 0 or not grid[i - 1][j]:
                     perimeter += 1
-                if i == rows - 1 or grid[i + 1][j] == 0:
+                if j == 0 or not grid[i][j - 1]:
                     perimeter += 1
-                if j == 0 or grid[i][j - 1] == 0:
+                if i == len(grid) - 1 or not grid[i + 1][j]:
                     perimeter += 1
-                if j == cols - 1 or grid[i][j + 1] == 0:
+                if j == len(grid[i]) - 1 or not grid[i][j + 1]:
                     perimeter += 1
-
     return perimeter
